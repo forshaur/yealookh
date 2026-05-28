@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GitHub Repo SVG Generator</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <main class="container">
+        <header class="header">
+            <h1 class="title">GitHub Repo SVG Generator</h1>
+            <p class="subtitle">Create a beautiful, dynamic SVG to showcase your chosen projects.</p>
+        </header>
+
+        <section class="form-group">
+            <input type="text" id="usernameInput" class="input" placeholder="Enter GitHub Username..." />
+            <button id="fetchBtn" class="button">Fetch Repos</button>
+        </section>
+
+        <div id="errorMsg" class="error" style="display: none;"></div>
+
+        <section id="reposSection" style="display: none;">
+            <div id="reposGrid" class="repos-grid"></div>
+            <div class="actions">
+                <button id="generateBtn" class="button" disabled>Generate SVG URL</button>
+            </div>
+        </section>
+
+        <section id="resultSection" class="result-section" style="display: none;">
+            <h2>Your Generated URL</h2>
+            <div class="url-box">
+                <span id="svgUrl"></span>
+                <button id="copyBtn" class="button" style="padding: 0.5rem 1rem;">Copy</button>
+            </div>
+            <h3>Preview:</h3>
+            <img id="previewImage" src="" alt="SVG Preview" class="preview-image" />
+        </section>
+    </main>
+    <script src="script.js"></script>
+</body>
+</html>
