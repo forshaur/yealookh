@@ -37,7 +37,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const username = usernameInput.value.trim();
         if (!username) return;
 
-        fetchBtn.textContent = 'Fetching...';
+        fetchBtn.textContent = 'Fetching Repositories...';
         fetchBtn.disabled = true;
         errorMsg.style.display = 'none';
         reposSection.style.display = 'none';
@@ -48,8 +48,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
         try {
             const res = await fetch(`https://api.github.com/users/${username}/repos?per_page=100&sort=updated`);
+            if (res.status === 404) {
+                throw new Error("GitHub user not found. Please check the spelling.");
+            }
+            if (res.status === 403) {
+                throw new Error("GitHub API rate limit exceeded. Please try again later.");
+            }
             if (!res.ok) {
-                throw new Error("Failed to fetch repositories. Check username or API rate limits.");
+                throw new Error("Failed to fetch repositories.");
             }
             reposData = await res.json();
             
@@ -64,7 +70,7 @@ document.addEventListener('DOMContentLoaded', () => {
             errorMsg.textContent = err.message;
             errorMsg.style.display = 'block';
         } finally {
-            fetchBtn.textContent = 'Fetch Repos';
+            fetchBtn.textContent = 'Fetch Repositories';
             fetchBtn.disabled = false;
         }
     };
@@ -156,7 +162,11 @@ document.addEventListener('DOMContentLoaded', () => {
         svgUrlSpan.textContent = url;
         previewImage.src = url;
         resultSection.style.display = 'flex';
-        resultSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        
+        // Timeout ensures the DOM updates display:flex before scrolling
+        setTimeout(() => {
+            resultSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }, 100);
     };
 
     const copyUrl = () => {

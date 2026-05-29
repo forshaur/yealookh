@@ -3,40 +3,47 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GitHub Repo SVG Generator</title>
+    <title>yealookh</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Caveat:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <main class="container">
         <header class="header">
-            <h1 class="title">GitHub Repo SVG Generator</h1>
-            <p class="subtitle">Create a beautiful, dynamic SVG to showcase your chosen projects.</p>
+            <div class="title-container">
+                <h1 class="title">yealookh</h1>
+                <p class="subtitle">Generate SVG portfolios for your GitHub profile</p>
+            </div>
         </header>
 
         <section class="form-group">
-            <input type="text" id="usernameInput" class="input" placeholder="Enter GitHub Username..." />
-            <button id="fetchBtn" class="button">Fetch Repos</button>
+            <label for="usernameInput" class="sr-only">GitHub Username</label>
+            <input type="text" id="usernameInput" class="input" placeholder="Enter GitHub username" autocomplete="off" />
+            <button id="fetchBtn" class="button">Fetch Repositories</button>
         </section>
 
-        <div id="errorMsg" class="error" style="display: none;"></div>
+        <div id="errorMsg" class="error" role="alert" style="display: none;"></div>
 
-        <section id="reposSection" style="display: none;">
+        <section id="reposSection" style="display: none;" aria-live="polite">
             <div id="reposGrid" class="repos-grid"></div>
             <div class="actions">
                 <button id="generateBtn" class="button" disabled>Generate SVG URL</button>
             </div>
         </section>
 
-        <section id="resultSection" class="result-section" style="display: none;">
-            <h2>Your Generated URL</h2>
+        <section id="resultSection" class="result-section" style="display: none;" aria-live="polite">
+            <h2 class="serif-text">Your Generated URL</h2>
             <div class="url-box">
                 <span id="svgUrl"></span>
-                <button id="copyBtn" class="button" style="padding: 0.5rem 1rem;">Copy</button>
+                <button id="copyBtn" class="button button-small">Copy Link</button>
             </div>
-            <h3>Preview:</h3>
-            <img id="previewImage" src="" alt="SVG Preview" class="preview-image" />
+            <img id="previewImage" src="" alt="Preview of your generated GitHub SVG" class="preview-image" />
         </section>
     </main>
+
     <script src="script.js"></script>
 </body>
 </html>
