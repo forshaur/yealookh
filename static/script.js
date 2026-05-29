@@ -156,6 +156,7 @@ document.addEventListener('DOMContentLoaded', () => {
         svgUrlSpan.textContent = url;
         previewImage.src = url;
         resultSection.style.display = 'flex';
+        resultSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
     };
 
     const copyUrl = () => {
